@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import plate from '../../images/plate.png'
+import plate from './images/plate.png'
 
 class App extends Component {
   constructor(props) {
