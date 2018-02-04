@@ -56,3 +56,8 @@ body {
 .center {
   text-align: center;
 }
+
+.input {
+  focus: background-color: lightblue;
+  focus: border: 3px solid #555;
+}
