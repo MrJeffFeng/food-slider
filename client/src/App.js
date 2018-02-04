@@ -10,7 +10,7 @@ class App extends Component {
       pref: [],
       user_id: 'None',
     };
-    this.onSubmit = this.check_account.bind(this);
+    this.onSubmit = this.handleSubmit.bind(this);
   }
 
   // Calls API to SQL
@@ -41,6 +41,11 @@ class App extends Component {
           "name": this.refs.name.value,
           "password": this.refs.password.value
         })
+      })
+      .then(function(response) {
+        return response.json()
+      }).then(function(body) {
+        console.log(body);
       });
   }
 
@@ -70,7 +75,7 @@ class App extends Component {
         <h1>{this.state.pref}</h1>
         <button onClick={() => this.refresh('getfood')}>Refresh</button>
         <h1>Current User: {this.state.user_id}</h1>
-        <form onSubmit={() => this.refresh_id()}>
+        <form onSubmit={this.onSubmit}>
           <input type="text" placeholder="Name" ref="name"/>
           <input type="text" placeholder="Password" ref="password"/>
           <input type="submit" />
