@@ -32,8 +32,8 @@ router.get('/api/getaccount', (req, res) => {
 
 router.post('/api/check_account', (req, res) => {
   var user = req.body;
-  console.log(user[username]);
-  connection.query('SELECT acct_id FROM accounts WHERE acct_name = ? AND password = ?', [user[name],user[password]], function(err, result){
+  console.log(user.username);
+  connection.query('SELECT acct_id FROM accounts WHERE acct_name = ? AND password = ?', [user.name,user.password], function(err, result){
     if (result.length > 0) {
       res.send({ express: result[0][0]});
     } else {
