@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import plate from './images/plate.png'
+import spoon from './images/spoon.png'
+import no from './images/no.png'
+import yes from './images/yes.png'
+import bottom from './images/bottom.png'
+import chopsticks from './images/chopsticks.svg'
 
 class App extends Component {
   constructor(props) {
@@ -80,6 +85,11 @@ class App extends Component {
           <input type="submit" />
         </form>
         <img src={plate} alt="plate" className="plate" />
+        <img src={spoon} alt="spoon" className="spoon" />
+        <img src={yes} alt="yes" className="yes" />
+        <img src={no} alt="no" className="no" />
+        <img src={bottom} alt="bottom" className="bottom" />
+        <img src={chopsticks} alt="chopsticks" className="chopsticks" />
       </div>
     );
   }
