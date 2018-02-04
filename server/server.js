@@ -45,8 +45,9 @@ router.post('/api/check_account', (req, res) => {
 
 router.post('api/add_favor'), (req, res) => {
   var list = req.body;
-  
-  connection.query('SELECT')
+  if (list.id != 'None') {
+    connection.query('SELECT favourites ')
+  }
 }
 
 

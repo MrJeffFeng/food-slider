@@ -41,8 +41,12 @@ class App extends Component {
           "name": this.refs.name.value,
           "password": this.refs.password.value
         })
-        .then(res => this.setState({ user_id: res.express[0]['acct_id']}))
       })
+      .then(function(response) {
+        return response.json()
+      }).then(function(body) {
+        console.log(body);
+      });
   }
 
   render() {
