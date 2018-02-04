@@ -31,21 +31,15 @@ class App extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    var self = this;
     // On submit of the form, send a POST request with the data to the server.
+    console.log(this.refs.name.value)
     fetch('/api/check_account', {
         method: 'POST',
         body: {
-          "name": self.refs.name.value,
-          "password": self.refs.password.value
+          "name": this.refs.name.value,
+          "password": this.refs.password.value
         }
       })
-      .then(function(response) {
-        console.log(response.json())
-        return response.json()
-      }).then(function(body) {
-        console.log(body);
-      });
   }
 
   render() {
