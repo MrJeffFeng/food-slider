@@ -7,7 +7,8 @@ class App extends Component {
     this.state = {
       items: [],
       counter: 0,
-      pref: []
+      pref: [],
+      user_id: 'None',
     };
     this.onSubmit = this.handleSubmit.bind(this);
   }
@@ -40,6 +41,7 @@ class App extends Component {
           "name": this.refs.name.value,
           "password": this.refs.password.value
         })
+        .then(res => this.setState({ user_id: res.express[0]['acct_id']}))
       })
   }
 
@@ -51,6 +53,7 @@ class App extends Component {
         <button onClick={() => this.clicked(0)}>No</button>
         <h1>{this.state.pref}</h1>
         <button onClick={() => this.refresh('getfood')}>Refresh</button>
+        <h1>Current User: {this.state.acct_id}</h1>
         <form onSubmit={this.onSubmit}>
           <input type="text" placeholder="Name" ref="name"/>
           <input type="text" placeholder="Password" ref="password"/>
