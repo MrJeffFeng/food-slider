@@ -74,15 +74,13 @@ class App extends Component {
     return (
       <div>
         <h1 className="center">{this.state.items[this.state.counter]}</h1>
-        <button onClick={() => this.clicked(1)}>Yes</button>
-        <button onClick={() => this.clicked(0)}>No</button>
-        <h1 className="center">{this.state.pref}</h1>
+        <p className="center">:Liked: {this.state.pref}</p>
         <button onClick={() => this.refresh('getfood')}>Refresh</button>
-        <h1 className="center">Current User: {this.state.user_id}</h1>
+        <h3 className="center">Current User: {this.state.user_id}</h3>
         <form onSubmit={this.onSubmit}>
           <input type="text" placeholder="Name" ref="name"/>
           <input type="text" placeholder="Password" ref="password"/>
-          <input type="submit" />
+          <input type="submit" value="Login"/>
         </form>
         <img src={plate} alt="plate" className="plate" />
         <img src={spoon} alt="spoon" className="spoon" />
