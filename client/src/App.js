@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import plate from '../../images/plate.png'
 
 class App extends Component {
   constructor(props) {
@@ -78,6 +79,7 @@ class App extends Component {
           <input type="text" placeholder="Password" ref="password"/>
           <input type="submit" />
         </form>
+        <img src={plate} alt="plate" width="20%" style="position:fixed;top:0;left:0;z-index:5" />
       </div>
     );
   }
