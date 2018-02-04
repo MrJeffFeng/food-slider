@@ -41,7 +41,7 @@ class App extends Component {
           "name": this.refs.name.value,
           "password": this.refs.password.value
         })
-      })
+      });
   }
 
   render() {
