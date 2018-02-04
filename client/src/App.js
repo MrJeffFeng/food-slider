@@ -10,7 +10,6 @@ class App extends Component {
       pref: [],
       user_id: 'None',
     };
-    this.onSubmit = this.handleSubmit.bind(this);
   }
 
   // Calls API to SQL
@@ -44,6 +43,22 @@ class App extends Component {
       });
   }
 
+  async check_account() {
+    var response = await fetch('/api/check_account', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          "name": this.refs.name.value,
+          "password": this.refs.password.value
+        })
+      });
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
   render() {
     return (
       <div>
@@ -53,7 +68,7 @@ class App extends Component {
         <h1>{this.state.pref}</h1>
         <button onClick={() => this.refresh('getfood')}>Refresh</button>
         <h1>Current User: {this.state.user_id}</h1>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={() => this.refresh_id()}>
           <input type="text" placeholder="Name" ref="name"/>
           <input type="text" placeholder="Password" ref="password"/>
           <input type="submit" />
@@ -69,6 +84,12 @@ class App extends Component {
       }
       this.setState({ counter: this.state.counter + 1})
     }
+  }
+
+  async refresh_id() {
+    this.check_account()
+      .then(res => this.setState({ user_id: res.express}))
+      .catch(err => console.log(err));
   }
 
   async refresh(item) {
