@@ -10,6 +10,7 @@ class App extends Component {
       pref: [],
       user_id: 'None',
     };
+    this.onSubmit = this.check_account.bind(this);
   }
 
   // Calls API to SQL
@@ -43,7 +44,8 @@ class App extends Component {
       });
   }
 
-  async check_account() {
+  async check_account(e) {
+    e.preventDefault();
     var response = await fetch('/api/check_account', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
