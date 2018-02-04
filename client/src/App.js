@@ -41,6 +41,7 @@ class App extends Component {
         }
       })
       .then(function(response) {
+        console.log(response.json())
         return response.json()
       }).then(function(body) {
         console.log(body);
@@ -55,7 +56,7 @@ class App extends Component {
         <button onClick={() => this.clicked(0)}>No</button>
         <h1>{this.state.pref}</h1>
         <button onClick={() => this.refresh('getfood')}>Refresh</button>
-        <form onSubmit={() => this.onSubmit}>
+        <form onSubmit={this.onSubmit}>
           <input type="text" placeholder="Name" ref="name"/>
           <input type="text" placeholder="Password" ref="password"/>
           <input type="submit" />
