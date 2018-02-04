@@ -93,7 +93,8 @@ class App extends Component {
     }
   }
 
-  async refresh_id() {
+  async refresh_id(e) {
+    e.preventDefault();
     this.check_account()
       .then(res => this.setState({ user_id: res.express[0]}))
       .catch(err => console.log(err));
