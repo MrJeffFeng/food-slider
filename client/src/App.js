@@ -42,11 +42,6 @@ class App extends Component {
           "password": this.refs.password.value
         })
       })
-      .then(function(response) {
-        return response.json()
-      }).then(function(body) {
-        console.log(body);
-      });
   }
 
   render() {
