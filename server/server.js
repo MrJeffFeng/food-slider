@@ -1,7 +1,14 @@
-const bodyParser = require('body-parser')
-const express = require('express')
-const path = require('path')
-const app = express()
+const bodyParser = require('body-parser');
+const express = require('express');
+const mysql = require('mysql');
+const path = require('path');
+const connection = mysql.createConnection({
+  host: 'db.liyinxue.com',
+  user: 'wenzhuow',
+  password: '12345',
+  database: 'foodswiper',
+});
+const app = express();
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
@@ -11,14 +18,11 @@ const router = express.Router()
 const staticFiles = express.static(path.join(__dirname, '../../client/build'))
 app.use(staticFiles)
 
-router.get('/cities', (req, res) => {
-  const cities = [
-    {name: 'New York City', population: 8175133},
-    {name: 'Los Angeles',   population: 3792621},
-    {name: 'Chicago',       population: 2695598}
-  ]
-  res.json(cities)
-})
+router.get('/api/getfood', (req, res) => {
+  connection.query('SELECT food_name FROM food', function(err, result){
+    res.send({ express: result});
+  });
+});
 
 app.use(router)
 
