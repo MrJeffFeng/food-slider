@@ -45,7 +45,7 @@ class App extends Component {
       .then(function(response) {
         return response.json()
       }).then(function(body) {
-        this.setState({user_id: body.res.express[0]['acct_id']});
+        console.log(body);
       });
   }
 
