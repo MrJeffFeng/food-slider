@@ -10,7 +10,7 @@ class App extends Component {
       pref: [],
       user_id: 'None',
     };
-    this.onSubmit = this.handleSubmit.bind(this);
+    this.onSubmit = this.check_account.bind(this);
   }
 
   // Calls API to SQL
