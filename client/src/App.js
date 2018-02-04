@@ -10,7 +10,7 @@ class App extends Component {
       pref: [],
       user_id: 'None',
     };
-    this.onSubmit = this.refresh_id.bind(this);
+    this.onSubmit = this.handleSubmit.bind(this);
   }
 
   // Calls API to SQL
@@ -44,9 +44,7 @@ class App extends Component {
       })
       .then(function(response) {
         return response.json()
-      }).then(function(body) {
-        this.setState({ user_id: body['express'][0]['acct_id']});
-      });
+      }).then(res => this.setState({ user_id: res.express[0]['acct_id']}));
   }
 
   async check_account(e) {
@@ -93,10 +91,9 @@ class App extends Component {
     }
   }
 
-  async refresh_id(e) {
-    e.preventDefault();
+  async refresh_id() {
     this.check_account()
-      .then(res => this.setState({ user_id: res.express[0]}))
+      .then(res => this.setState({ user_id: res.express[0]['acct_id']}))
       .catch(err => console.log(err));
   }
 
