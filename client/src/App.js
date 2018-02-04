@@ -35,10 +35,11 @@ class App extends Component {
     console.log(this.refs.name.value)
     fetch('/api/check_account', {
         method: 'POST',
-        body: {
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
           "name": this.refs.name.value,
           "password": this.refs.password.value
-        }
+        })
       })
   }
 
