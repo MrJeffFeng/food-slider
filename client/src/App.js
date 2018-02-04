@@ -53,7 +53,7 @@ class App extends Component {
         <button onClick={() => this.clicked(0)}>No</button>
         <h1>{this.state.pref}</h1>
         <button onClick={() => this.refresh('getfood')}>Refresh</button>
-        <h1>Current User: {this.state.acct_id}</h1>
+        <h1>Current User: {this.state.user_id}</h1>
         <form onSubmit={this.onSubmit}>
           <input type="text" placeholder="Name" ref="name"/>
           <input type="text" placeholder="Password" ref="password"/>
