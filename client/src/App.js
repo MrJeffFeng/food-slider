@@ -73,12 +73,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>{this.state.items[this.state.counter]}</h1>
+        <h1 className="center">{this.state.items[this.state.counter]}</h1>
         <button onClick={() => this.clicked(1)}>Yes</button>
         <button onClick={() => this.clicked(0)}>No</button>
-        <h1>{this.state.pref}</h1>
+        <h1 className="center">{this.state.pref}</h1>
         <button onClick={() => this.refresh('getfood')}>Refresh</button>
-        <h1>Current User: {this.state.user_id}</h1>
+        <h1 className="center">Current User: {this.state.user_id}</h1>
         <form onSubmit={this.onSubmit}>
           <input type="text" placeholder="Name" ref="name"/>
           <input type="text" placeholder="Password" ref="password"/>
@@ -86,8 +86,8 @@ class App extends Component {
         </form>
         <img src={plate} alt="plate" className="plate" />
         <img src={spoon} alt="spoon" className="spoon" />
-        <img src={yes} alt="yes" className="yes" />
-        <img src={no} alt="no" className="no" />
+        <img src={yes} alt="yes" className="yes" onClick={() => this.clicked(1)}/>
+        <img src={no} alt="no" className="no" onClick={() => this.clicked(0)}/>
         <img src={bottom} alt="bottom" className="bottom" />
         <img src={chopsticks} alt="chopsticks" className="chopsticks" />
       </div>

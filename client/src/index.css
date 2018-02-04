@@ -52,3 +52,7 @@ body {
   left:15%;
   z-index:4
 }
+
+.center {
+  text-align: center;
+}
