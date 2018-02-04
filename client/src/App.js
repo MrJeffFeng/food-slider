@@ -79,7 +79,7 @@ class App extends Component {
           <input type="text" placeholder="Password" ref="password"/>
           <input type="submit" />
         </form>
-        <img src={plate} alt="plate" width="20%" style="position:fixed;top:0;left:0;z-index:5" />
+        <img src={plate} alt="plate" className="plate" />
       </div>
     );
   }
