@@ -57,7 +57,8 @@ body {
   text-align: center;
 }
 
-.input {
-  focus: background-color: lightblue;
-  focus: border: 3px solid #555;
+input[type = text] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
