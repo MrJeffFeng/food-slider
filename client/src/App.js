@@ -35,9 +35,9 @@ class App extends Component {
     // On submit of the form, send a POST request with the data to the server.
     fetch('/api/check_account', {
         method: 'POST',
-        data: {
-          name: self.refs.name,
-          password: self.refs.password
+        body: {
+          "name": self.refs.name.value,
+          "password": self.refs.password.value
         }
       })
       .then(function(response) {
