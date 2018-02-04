@@ -32,8 +32,8 @@ router.get('/api/getaccount', (req, res) => {
 
 router.post('/api/check_account', (req, res) => {
   var user = req.body;
-  var sql = 'SELECT acct_id FROM accounts WHERE acct_name = "' + mysql.escape(user.name) + '" AND password = "' + mysql.escape(user.password) + '"';
-  connection.query(sql, function(err, result){
+  var sql = 'SELECT acct_id FROM accounts WHERE acct_name = ?and password = ?';
+  connection.query(sql, [user.name, user.password], function(err, result){
     console.log(result);
     if (result.length > 0) {
       res.end({result});
