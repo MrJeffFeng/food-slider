@@ -88,7 +88,7 @@ class App extends Component {
 
   async refresh_id() {
     this.check_account()
-      .then(res => this.setState({ user_id: res.express}))
+      .then(res => this.setState({ user_id: res.express[0]}))
       .catch(err => console.log(err));
   }
 
