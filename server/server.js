@@ -30,13 +30,13 @@ router.get('/api/getaccount', (req, res) => {
   });
 });
 
-router.post('/api/check_account', (req, res) => {
+router.get('/api/check_account', (req, res) => {
   var user = req.body;
-  var sql = 'SELECT acct_id FROM accounts WHERE acct_name = ?and password = ?';
+  var sql = 'SELECT acct_id FROM accounts WHERE acct_name = ? and password = ?';
   connection.query(sql, [user.name, user.password], function(err, result){
     console.log(result);
     if (result.length > 0) {
-      res.end({result});
+      res.send({express: result});
     } else {
       res.end('Fail');
     }
