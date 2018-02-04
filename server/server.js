@@ -30,6 +30,24 @@ router.get('/api/getaccount', (req, res) => {
   });
 });
 
+router.post('/api/check_account', (req, res) => {
+  var user = req.body;
+  connection.query('SELECT acct_id FROM accounts WHERE acct_name = ? AND password = ?', [user[0],user[1]], function(err, result){
+    if (result.length > 0) {
+      res.send({ express: result[0][0]});
+    } else {
+      res.end('Fail');
+    }
+  })
+});
+
+router.post('api/add_favor'), (req, res) => {
+  var list = req.body;
+
+  connection.query('SELECT')
+}
+
+
 app.use(router)
 
 // any routes not picked up by the server api will be handled by the react router
