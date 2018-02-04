@@ -25,7 +25,7 @@ router.get('/api/getfood', (req, res) => {
 });
 
 router.get('/api/getaccount', (req, res) => {
-  connection.query('SELECT acct_id FROM accounts WHERE acct_name = "wenzhuow" and password = "123"', function(err, result){
+  connection.query('SELECT acct_id FROM accounts', function(err, result){
     res.send({ express: result});
   });
 });
