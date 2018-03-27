@@ -14,7 +14,7 @@ class App extends Component {
       items: [],
       counter: 0,
       pref: [],
-      user_id: 'None',
+      user_name: '',
     };
     this.onSubmit = this.handleSubmit.bind(this);
   }
@@ -39,18 +39,18 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
     // On submit of the form, send a POST request with the data to the server.
-    console.log(this.refs.name.value)
+    console.log(this.refs.email.value)
     fetch('/api/check_account', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
-          "name": this.refs.name.value,
+          "email": this.refs.email.value,
           "password": this.refs.password.value
         })
       })
       .then(function(response) {
         return response.json()
-      }).then(res => this.setState({ user_id: res.express[0]['acct_id']}));
+      }).then(res => this.setState({ user_id: res.express[0]['acct_name']}));
   }
 
   async check_account(e) {
@@ -59,7 +59,7 @@ class App extends Component {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
-          "name": this.refs.name.value,
+          "name": this.refs.email.value,
           "password": this.refs.password.value
         })
       });
@@ -76,7 +76,7 @@ class App extends Component {
         <h1 className="center">{this.state.items[this.state.counter]}</h1>
         <p className="center">Liked: {this.state.pref}</p>
         <button onClick={() => this.refresh('getfood')}>Refresh</button>
-        <h3 className="center">Current User: {this.state.user_id}</h3>
+        <h3 className="center">Current User: {this.state.user_name}</h3>
         <form className="center" onSubmit={this.onSubmit}>
           <input type="text" placeholder="Name" ref="name"/>
           <input type="text" placeholder="Password" ref="password"/>

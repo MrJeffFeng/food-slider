@@ -32,8 +32,8 @@ router.get('/api/getaccount', (req, res) => {
 
 router.post('/api/check_account', (req, res) => {
   var user = req.body;
-  var sql = 'SELECT * FROM accounts WHERE acct_name = ? and password = ?';
-  connection.query(sql, [user.name, user.password], function(err, result){
+  var sql = 'SELECT acct_name FROM accounts WHERE email_addr = ? and password = ?';
+  connection.query(sql, [user.email, user.password], function(err, result){
     console.log(result);
     if (result.length > 0) {
       res.send({express: result});
