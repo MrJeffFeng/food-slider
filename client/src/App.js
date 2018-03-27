@@ -78,7 +78,7 @@ class App extends Component {
         <button onClick={() => this.refresh('getfood')}>Refresh</button>
         <h3 className="center">Current User: {this.state.user_name}</h3>
         <form className="center" onSubmit={this.onSubmit}>
-          <input type="text" placeholder="Name" ref="name"/>
+          <input type="text" placeholder="Email" ref="email"/>
           <input type="text" placeholder="Password" ref="password"/>
           <input type="submit" value="Login"/>
         </form>
