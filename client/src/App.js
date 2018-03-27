@@ -98,7 +98,7 @@ class App extends Component {
   addNewData(newData) {
     var newList = this.state.items.slice(); // Returns a copy of the current list
     for (var i=0; i<newData.length; i++) {
-      if (newList.includes(newData[i]['food_name'])) {
+      if (newList.includes(newData[i]['food_name']) && this.state.pref.includes(newData[i]['food_name'])) {
         console.log(newData[i]['food_name'] + ' already exist!')
       } else {
         newList.push(newData[i]['food_name']);
