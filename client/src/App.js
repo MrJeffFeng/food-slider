@@ -14,6 +14,7 @@ class App extends Component {
       items: [],
       counter: 0,
       pref: [],
+      user_id: '',
       user_name: '',
     };
     this.onSubmit = this.handleSubmit.bind(this);
@@ -50,25 +51,11 @@ class App extends Component {
       })
       .then(function(response) {
         return response.json()
-      }).then(res => this.setState({ user_name: res.express[0]['acct_name']}));
+      }).then(res => this.setState({
+        user_name: res.express[0]['acct_name'],
+        user_id: res.express[0]['acct_id']
+      }));
   }
-
-  async check_account(e) {
-    e.preventDefault();
-    var response = await fetch('/api/check_account', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({
-          "name": this.refs.email.value,
-          "password": this.refs.password.value
-        })
-      });
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
 
   render() {
     return (
@@ -101,12 +88,6 @@ class App extends Component {
     }
   }
 
-  async refresh_id() {
-    this.check_account()
-      .then(res => this.setState({ user_id: res.express[0]['acct_id']}))
-      .catch(err => console.log(err));
-  }
-
   async refresh(item) {
     this.callApi(item)
       .then(res => this.setState({ items: this.addNewData(res.express) }))
@@ -115,9 +96,13 @@ class App extends Component {
 
 
   addNewData(newData) {
-    var newList = this.state.items.slice();
+    var newList = this.state.items.slice(); // Returns a copy of the current list
     for (var i=0; i<newData.length; i++) {
-      newList.push(newData[i]['food_name']);
+      if !(newList.includes(newData[i]['food_name'])) {
+        newList.push(newData[i]['food_name']);
+      } else {
+        console.log(newData[i]['food_name'] + ' already exist!')
+      }
     }
   return newList
   }
