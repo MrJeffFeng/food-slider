@@ -50,7 +50,7 @@ class App extends Component {
       })
       .then(function(response) {
         return response.json()
-      }).then(res => this.setState({ user_id: res.express[0]['acct_name']}));
+      }).then(res => this.setState({ user_name: res.express[0]['acct_name']}));
   }
 
   async check_account(e) {

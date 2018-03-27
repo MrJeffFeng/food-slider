@@ -32,7 +32,7 @@ router.get('/api/getaccount', (req, res) => {
 
 router.post('/api/check_account', (req, res) => {
   var user = req.body;
-  var sql = 'SELECT acct_name FROM accounts WHERE email_addr = ? and password = ?';
+  var sql = 'SELECT acct_name, acct_id FROM accounts WHERE email_addr = ? and password = ?';
   connection.query(sql, [user.email, user.password], function(err, result){
     console.log(result);
     if (result.length > 0) {
