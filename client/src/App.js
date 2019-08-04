@@ -83,6 +83,15 @@ class App extends Component {
     if (this.state.counter < this.state.items.length) {
       if (r == 1) {
         this.setState({ pref: this.state.pref + this.state.items[this.state.counter] + ', '});
+        // Add to SQL
+        fetch('/api/add_favor', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({
+            "id": this.state.user_id,
+            "item": this.state.items[this.state.counter]
+          })
+        });
       }
       this.setState({ counter: this.state.counter + 1})
     }
