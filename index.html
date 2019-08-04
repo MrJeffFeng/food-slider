@@ -37,10 +37,10 @@
           <form>
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="Enter your user id...">
+                <input id="user_id" type="email" class="form-control form-control-lg" placeholder="Enter your user id...">
               </div>
               <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Log In</button>
+                <button id="submit" type="submit" class="btn btn-block btn-lg btn-primary">Log In</button>
               </div>
             </div>
           </form>
@@ -62,7 +62,7 @@
         </div>
         <div class="col-lg-4">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <h3>Food Item</h3>
+            <h3 id='food_item'>Food Item</h3>
           </div>
         </div>
         <div class="col-lg-4">
@@ -82,8 +82,8 @@
       <div class="row no-gutters">
 
         <div class="my-auto showcase-text">
-          <h2>Restaurants Liked by {user id}</h2>
-          <p class="lead mb-0">None</p>
+          <h2 id='liked_by'>Restaurants Liked by {user id}</h2>
+          <p id='list' class="lead mb-0">None</p>
         </div>
       </div>
   </section>
@@ -140,6 +140,36 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+  <script>
+
+      var foodlist = []
+      var foodliked = []
+
+      function submit(){
+          #get food list
+          #show food
+          #give user_id and get liked
+          #show liked
+      }
+
+      function liked(){
+          #post food liked
+          #add to liked
+          #show next food
+      }
+
+      function show_next(){
+          foodlist.pop()
+          if foodlist.length == 0:
+            document.getElementById("food_item").innerHTML = "no more food near you :("
+          else:
+            document.getElementById("food_item").innerHTML = foodlist[foodlist.length-1]
+      }
+  </script>
+
+
 </body>
+
+
 
 </html>
