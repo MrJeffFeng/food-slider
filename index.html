@@ -40,7 +40,7 @@
                 <input id="user_id" type="email" class="form-control form-control-lg" placeholder="Enter your user id...">
               </div>
               <div class="col-12 col-md-3">
-                <button id="submit" type="submit" class="btn btn-block btn-lg btn-primary">Log In</button>
+                <button id="submit" onclick='submit()' type="submit" class="btn btn-block btn-lg btn-primary">Log In</button>
               </div>
             </div>
           </form>
@@ -141,38 +141,57 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <script>
-
       var foodlist = []
       var foodliked = []
+      var user_id = document.getElementById("user_id").innerHTML
 
       function submit(){
-          //get food list
-          //show food
-          //give user_id and get liked
-          //show liked
+          $.get('/api/v1/foods', function(data) {
+              foodlist = data;
+          });
 
+          if (foodlist.length == 0) {
+            document.getElementById("food_item").innerHTML = "no food near you found"
+          } else {
+            document.getElementById("food_item").innerHTML = foodlist[foodlist.length-1]
+          }
+
+          //get current location
           var location = navigator.geolocation.getCurrentPosition(showPosition);
 
+          //give user_id and show liked
+          $.get(`/api/v1/users/${user_id}`, function(data) {
+              foodliked = data.favorites;
+          });
+
+          if (foodlist.length == 0) {
+            document.getElementById("list").innerHTML = "no food liked thusfar"
+          } else {
+            document.getElementById("list").innerHTML = foodliked.join('\n')
+          }
       }
 
-      function liked(){
-          #post food liked
-          #add to liked
-          #show next food
+      function liked() {
+          //submit food liked and update food liked list and show next food
+          foodliked.append(foodlist[foodlist.length-1]);
+
+          $.put(`/api/v1/users/${user_id}`, {"favorite": foodlist[foodlist.length-1]});
+
+          document.getElementById("list").innerHTML = foodliked.join('\n');
+
+          show_next();
       }
 
-      function show_next(){
-          foodlist.pop()
-          if foodlist.length == 0:
-            document.getElementById("food_item").innerHTML = "no more food near you :("
-          else:
-            document.getElementById("food_item").innerHTML = foodlist[foodlist.length-1]
+      function show_next() {
+          //show next food
+          foodlist.pop();
+
+          if (foodlist.length == 0) {
+            document.getElementById("food_item").innerHTML = "no more food near you :(";
+          } else {
+            document.getElementById("food_item").innerHTML = foodlist[foodlist.length-1];
+          }
       }
   </script>
-
-
 </body>
-
-
-
 </html>
