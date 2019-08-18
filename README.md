@@ -1,7 +1,2 @@
-# food-swiper
-React.js + Express
-1. database
-2. expressjs middleware
-3. frontend
-4. location service
-5. web crawl yelp
+# Food Slider
+Food Slider is a Tinder-like food recommendation app. The frontend of the app currently runs on a Bootstrap template. It communicates with a backend mongoDB server via Express.js. The crawler portion of the code is still in progress. It is currently able to automatically extend the frontier as it crawls and avoid common crawler traps like dynamic calendar and repeating directory. The goal is for the crawler to crawl Yelp and other websites to retrieve restaurant data. The data can then be sorted by proximity to the location of the user and displayed for swiping. The liked restaurants will be saved for each user to come back and view again.
