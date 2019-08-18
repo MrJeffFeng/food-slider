@@ -2,9 +2,27 @@ from lxml import html,etree
 import re
 from time import time
 from collections import defaultdict
-from urlparse import urlparse, parse_qs, urljoin
-from simple_get import simple_get
+from urllib.parse import urlparse, parse_qs, urljoin
+from contextlib import closing
+from requests import get
+from requests.exceptions import RequestException
 
+def simple_get(url):
+    """
+    Attempts to get the content at `url` by making an HTTP GET request.
+    If the content-type of response is some kind of HTML/XML, return the
+    text content, otherwise return None.
+    """
+    try:
+        with closing(get(url, stream=True)) as resp:
+            if is_good_response(resp):
+                return resp.content
+            else:
+                return None
+
+    except RequestException as e:
+        log_error('Error during requests to {0} : {1}'.format(url, str(e)))
+        return None
 
 class Crawler():
 
@@ -17,15 +35,15 @@ class Crawler():
         self.toCrawl = toCrawl
 
     def update(self):
-        unprocessed_links = self.to_crawl()
+        unprocessed_links = self.toCrawl
         if unprocessed_links:
             self.download_links(unprocessed_links)
 
     def download_links(self, unprocessed_links):
         for link in unprocessed_links:
-            print("Got a link to download:", link.full_url)
+            print("Got a link to download:", link)
             downloaded = simple_get(link)
-            file = open('data/'+link.full_url, 'w')
+            file = open('data/'+link, 'w')
             file.write(str(downloaded))
             file.close()
             links = extract_next_links(downloaded)
@@ -39,7 +57,7 @@ class Crawler():
                 for url in self.overalldict:
                     file.write(url+" ::: " + str(len(self.overalldict[url]))+"\n")
             except Exception as e:
-                print e
+                print(e)
             finally:
                 file.close()
 
@@ -101,7 +119,7 @@ class Crawler():
             if len(directories) > 15:
                 return False
         except Exception as e:
-            print e
+            print(e)
 
 
         #with a question mark and query parameters, the url is likely a dynamic calendar trap
