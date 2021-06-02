@@ -22,7 +22,7 @@ setuptools==40.5.0
 six==1.12.0
 sklearn==0.0
 soupsieve==1.9
-urllib3==1.24.1
+urllib3==1.26.5
 vaderSentiment==3.2.1
 virtualenv==16.1.0
 wheel==0.32.2
