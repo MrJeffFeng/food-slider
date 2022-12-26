@@ -25,6 +25,6 @@ soupsieve==1.9
 urllib3==1.24.1
 vaderSentiment==3.2.1
 virtualenv==16.1.0
-wheel==0.32.2
+wheel==0.38.1
 xgboost==0.82
 XlsxWriter==1.1.5
